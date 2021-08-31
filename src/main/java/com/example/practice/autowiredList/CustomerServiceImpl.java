@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -36,6 +37,12 @@ public class CustomerServiceImpl implements CustomerService{
     }
     public List<Customer> getCustomers() {
         return customers;
+    }
+
+    public Customer getCustomer(int id){
+        Optional<Customer> theCustomer = customers.stream().filter(p -> p.getId() == id).findFirst();
+        return theCustomer.get();
+
     }
 
     }
